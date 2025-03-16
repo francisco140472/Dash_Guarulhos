@@ -12,4 +12,3 @@ pymssql
 virtualenv    
 plotly  
 matplotlib
-
