@@ -4,3 +4,4 @@ requests
 plotly.express
 pyodbc
 dotenv 
+openpyxl
