@@ -5,3 +5,12 @@ plotly.express
 pyodbc
 dotenv 
 openpyxl
+python
+gunicorn   
+deploy      
+python-dotenv
+pymssql
+virtualenv    
+plotly  
+matplotlib
+show pymssql
