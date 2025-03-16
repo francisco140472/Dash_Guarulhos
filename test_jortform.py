@@ -11,10 +11,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuração do SQL Server (usando variáveis de ambiente)
-server = os.getenv("200.98.80.97")
-database = os.getenv("E_XLS_JOTFORM")
-username = os.getenv("sa")
-password = os.getenv("SantoAndre2021")
+server = os.getenv("SERVER")
+database = os.getenv("DATABASE")
+username = os.getenv("USERNAME")
+password = os.getenv("PASSWORD")
 
 # Função para buscar dados do JotForm via link direto para o cadastro de esgoto
 def get_jotform_data_esgoto():
