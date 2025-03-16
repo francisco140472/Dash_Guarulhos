@@ -10,3 +10,4 @@ deploy
 pymssql
 python-dotenv
 datetime
+plotly-time
