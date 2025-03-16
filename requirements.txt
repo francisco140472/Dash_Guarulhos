@@ -8,7 +8,4 @@ openpyxl
 gunicorn   
 deploy      
 pymssql
-virtualenv    
-plotly  
-matplotlib
 python-dotenv
