@@ -5,7 +5,6 @@ plotly.express
 pyodbc
 dotenv 
 openpyxl
-python
 gunicorn   
 deploy      
 pymssql
