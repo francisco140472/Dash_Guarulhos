@@ -1,0 +1,8 @@
+streamlit 
+pandas 
+requests
+BytesIO
+plotly.express
+pyodbc
+os
+dotenv 
