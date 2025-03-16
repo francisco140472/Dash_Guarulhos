@@ -11,10 +11,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuração do SQL Server (usando variáveis de ambiente)
-server=200.98.80.97
-database=E_XLS_JOTFORM
-username=sa
-password=SantoAndre2021
+erver = "200.98.80.97"
+database = "E_XLS_JOTFORM"
+username = "sa"
+password = "SantoAndre2021"
+
 
 
 # Função para buscar dados do JotForm via link direto para o cadastro de esgoto
