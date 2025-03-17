@@ -19,4 +19,4 @@ jobs:
 
       - name: Rodar Streamlit
         run: |
-          nohup streamlit run app.py --server.port 8501 --server.headless true &
+          nohup streamlit run test_jortform_antiga.py --server.port 8501 --server.headless true &
