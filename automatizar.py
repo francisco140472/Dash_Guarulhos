@@ -1,14 +1,17 @@
 import os
-import time
+import subprocess
 from datetime import datetime
 
-# 🔹 Caminho do repositório LOCAL (ajuste para onde o repositório foi clonado)
+# 🔹 Caminho do repositório LOCAL
 REPO_PATH = r'c:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos'
 
 # 🔹 Configurar usuário do Git
 GIT_USERNAME = "francisco140472"
 GIT_EMAIL = "francisco.assis@enorsul.com.br"
-GIT_BRANCH = "main"  # Verifique se é "main" ou "master"
+GIT_BRANCH = "main"  # Confirme se é "main" ou "master"
+
+# 🔹 Mensagem de commit automática
+commit_message = f"Atualização automática: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
 
 # 🔹 Verificar se o repositório existe
 if not os.path.exists(REPO_PATH):
@@ -18,21 +21,29 @@ if not os.path.exists(REPO_PATH):
 # 🔹 Mudar para o diretório do repositório
 os.chdir(REPO_PATH)
 
-# 🔹 Função para atualizar o repositório
-def atualizar_git():
-    commit_message = f"Atualização automática: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-    
-    os.system(f'git config user.name "{GIT_USERNAME}"')
-    os.system(f'git config user.email "{GIT_EMAIL}"')
-    os.system(f'git pull origin {GIT_BRANCH}')
-    os.system('git add .')
-    os.system(f'git commit -m "{commit_message}"')
-    os.system(f'git push origin {GIT_BRANCH}')
-    
-    print(f"🚀 Atualização automática concluída em {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+# 🔹 Executar comandos Git
+def run_git_command(command):
+    """Executa um comando Git e retorna a saída"""
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"❌ Erro ao executar: {command}\n{result.stderr}")
+        exit(1)
+    print(f"✅ {command} executado com sucesso.")
 
-# 🔹 Loop para rodar a cada 1 hora (3600 segundos)
-while True:
-    atualizar_git()
-    print("⏳ Aguardando 1 hora para a próxima atualização...\n")
-    time.sleep(3600)  # Aguarda 3600 segundos (1 hora)
+# Configurar usuário do Git
+run_git_command(f'git config user.name "{GIT_USERNAME}"')
+run_git_command(f'git config user.email "{GIT_EMAIL}"')
+
+# Atualizar o repositório
+run_git_command(f'git pull origin {GIT_BRANCH}')
+
+# Adicionar arquivos ao commit
+run_git_command('git add .')
+
+# Criar commit
+run_git_command(f'git commit -m "{commit_message}"')
+
+# Enviar para o GitHub
+run_git_command(f'git push origin {GIT_BRANCH}')
+
+print("🚀 Atualização automática concluída!")
