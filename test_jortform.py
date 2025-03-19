@@ -1,11 +1,11 @@
-import streamlit as st
-import pandas as pd
-import requests
+import streamlit as st # type: ignore
+import pandas as pd # type: ignore
+import requests # type: ignore
 from io import BytesIO
-import plotly.express as px
-import pyodbc
+import plotly.express as px # type: ignore
+import pyodbc # type: ignore
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 from datetime import datetime
 
 # Carregar variáveis de ambiente do arquivo .env
