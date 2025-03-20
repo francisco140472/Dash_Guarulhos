@@ -1,4 +1,5 @@
 @echo off
-cd C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos
-python test_jorfotm.py
+cd /d C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos
+start "" "C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos\.venv\Scripts\python.exe" -m streamlit run test_jortform.py
+start "" "C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos\.venv\Scripts\python.exe" atualizar_git.py
 exit
