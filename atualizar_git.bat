@@ -8,6 +8,6 @@ start "" "C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos\.venv\Scripts
 timeout /t 5 /nobreak
 
 :: Atualiza o repositório Git
-"C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos\.venv\Scripts\python.exe" atualizar_git.py
+"C:\Users\franc\OneDrive\Documentos\GitHub\Dash_Guarulhos\.venv\Scripts\python.exe" test_jortform.py
 
 exit
