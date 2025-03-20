@@ -18,4 +18,4 @@ while True:
         print(f"❌ Erro ao atualizar: {e}")
 
     print("⏳ Aguardando 1 hora para a próxima atualização...\n")
-    time.sleep(10)  # Espera 1 hora antes de rodar novamente
+    time.sleep(20)  # Espera 1 hora antes de rodar novamente
