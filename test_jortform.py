@@ -1,3 +1,28 @@
+import os
+import subprocess
+import streamlit as st
+
+# Função para atualizar o código automaticamente
+def atualizar_codigo():
+    try:
+        # Executar Git Pull
+        resultado = subprocess.run(["git", "pull", "origin", "main"], capture_output=True, text=True)
+        st.sidebar.write("🔄 Atualizando código...")
+        st.sidebar.write(resultado.stdout)
+        if "Already up to date" in resultado.stdout:
+            st.sidebar.write("✅ Código já está atualizado!")
+        else:
+            st.sidebar.write("⚠ Atualização aplicada, reinicie o app!")
+    except Exception as e:
+        st.sidebar.write(f"❌ Erro ao atualizar: {e}")
+
+# Botão para atualizar o código na interface
+if st.sidebar.button("🔄 Atualizar Código"):
+    atualizar_codigo()
+
+
+
+
 import streamlit as st # type: ignore
 import pandas as pd # type: ignore
 import requests # type: ignore
@@ -167,8 +192,8 @@ if jotform_data_esgoto is not None:
     st.subheader(f"📊 Total de Cadastros de Esgoto: {total_jotform_cadastros_esgoto:,}".replace(",", "."))
 
 if jotform_data_ligacao is not None:
-    total_jotform_cadastros_iniciativas = len(jotform_data_ligacao)
-    st.subheader(f"📊 Total de Iniciativas: {total_jotform_cadastros_iniciativas:,}".replace(",", "."))
+    total_jotform_cadastros_inativas = len(jotform_data_ligacao)
+    st.subheader(f"📊 Total de Inativas: {total_jotform_cadastros_inativas:,}".replace(",", "."))
 
 else:
     st.warning("⚠️ Não foi possível carregar os dados de JotForm ou SQL.")
