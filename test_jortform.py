@@ -8,7 +8,7 @@ import os
 from dotenv import load_dotenv # type: ignore
 from datetime import datetime
 
-# Carregar variáveis de ambiente do arquivo .env
+# Carregar variáveis de ambiente do arquivo .envistal
 load_dotenv()
 
 # Configuração do SQL Server (usando variáveis de ambiente)
