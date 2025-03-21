@@ -1,4 +1,4 @@
-import atualizacao_stre as st # type: ignore
+import streamlit as st # type: ignore
 import pandas as pd # type: ignore
 import requests # type: ignore
 from io import BytesIO
@@ -50,7 +50,7 @@ def get_jotform_data_ligacao():
         return None
 
 # Função para buscar dados do SQL Server, tratando o caso quando não há filtro de data
-@st.cache_data
+@st.cache_resource
 def get_sql_data_totals(selected_date=None):
     try:
         # Se o filtro de data não foi selecionado, usa a data de hoje

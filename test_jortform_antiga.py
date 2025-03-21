@@ -1,4 +1,4 @@
-import atualizacao_stre as st
+import guarulhos_v1 as st
 import pandas as pd
 import requests
 from io import BytesIO
