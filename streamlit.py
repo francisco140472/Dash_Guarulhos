@@ -21,7 +21,7 @@ def atualizar_codigo():
 # Função para reiniciar o app
 def reiniciar_app():
     time.sleep(2)  # Pequeno delay para evitar conflitos
-    os.system("streamlit run app.py")  # Substitua 'app.py' pelo nome do seu script principal
+    os.system("streamlit run test_jortform.py")  # Substitua 'app.py' pelo nome do seu script principal
     st.sidebar.write("🔄 Reiniciando...")
 
 # Função que verifica atualizações em segundo plano
