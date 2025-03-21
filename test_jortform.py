@@ -1,4 +1,4 @@
-import streamlit as st # type: ignore
+import atualizacao_stre as st # type: ignore
 import pandas as pd # type: ignore
 import requests # type: ignore
 from io import BytesIO

@@ -8,21 +8,21 @@ import threading
 def atualizar_codigo():
     try:
         resultado = subprocess.run(["git", "pull", "origin", "main"], capture_output=True, text=True)
-        st.sidebar.write("🔄 Verificando atualizações...")
+        st.sidebar.markdown("🔄 Verificando atualizações...")
 
         if "Already up to date" in resultado.stdout:
-            st.sidebar.write("✅ Código já está atualizado!")
+            st.sidebar.markdown("✅ Código já está atualizado!")
         else:
-            st.sidebar.write("⚠ Atualização detectada, reiniciando o app...")
-            reiniciar_app()
+            st.sidebar.markdown("⚠ Atualização detectada, reiniciando o app...")
+            reiniciar_test_jortform()
     except Exception as e:
-        st.sidebar.write(f"❌ Erro ao atualizar: {e}")
+        st.sidebar.markdown(f"❌ Erro ao atualizar: {e}")
 
 # Função para reiniciar o app
-def reiniciar_app():
+def reiniciar_test_jortform():
     time.sleep(2)  # Pequeno delay para evitar conflitos
-    os.system("streamlit run test_jortform.py")  # Substitua 'app.py' pelo nome do seu script principal
-    st.sidebar.write("🔄 Reiniciando...")
+    subprocess.Popen(["streamlit", "run", "test_jortform.py"])  # Substitua 'test_jortform.py' pelo nome do seu script principal
+    st.sidebar.markdown("🔄 Reiniciando...")
 
 # Função que verifica atualizações em segundo plano
 def verificar_atualizacoes_periodicamente(intervalo=300):
