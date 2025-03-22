@@ -23,7 +23,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar Streamlit no Windows
+      - name: Reiniciar Streamlit (caso esteja em um servidor próprio)
         run: |
-          start /B python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
-        shell: cmd
+           pkill -f streamlit
+           nohup streamlit test_jortform.py--server.port 8501 &
+
+      ##- name: Rodar Streamlit no Windows
+      ##  run: |
+        ##  start /B python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
+       ## shell: cmd
