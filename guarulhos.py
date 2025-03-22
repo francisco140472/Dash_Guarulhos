@@ -2,7 +2,10 @@ import os
 import subprocess
 import streamlit as st
 import time
-import threading
+
+# Criando uma variável de estado para indicar se há uma atualização pendente
+if "atualizacao_pendente" not in st.session_state:
+    st.session_state.atualizacao_pendente = False
 
 # Função para atualizar o código automaticamente
 def atualizar_codigo():
@@ -14,25 +17,23 @@ def atualizar_codigo():
             st.sidebar.markdown("✅ Código já está atualizado!")
         else:
             st.sidebar.markdown("⚠ Atualização detectada, reiniciando o app...")
-            reiniciar_test_jortform()
+            st.session_state.atualizacao_pendente = True  # Marca que precisa reiniciar
     except Exception as e:
         st.sidebar.markdown(f"❌ Erro ao atualizar: {e}")
 
 # Função para reiniciar o app
 def reiniciar_test_jortform():
-    time.sleep(2)  # Pequeno delay para evitar conflitos
-    subprocess.Popen(["streamlit", "run", "test_jortform.py"])  # Substitua 'test_jortform.py' pelo nome do seu script principal
     st.sidebar.markdown("🔄 Reiniciando...")
+    time.sleep(2)
+    os.system("streamlit run test_jortform.py")  # Substitua pelo nome correto do script principal
 
-# Função que verifica atualizações em segundo plano
-def verificar_atualizacoes_periodicamente(intervalo=300):
-    while True:
-        atualizar_codigo()
-        time.sleep(intervalo)  # Verifica a cada 'intervalo' segundos (ex: 300 = 5 minutos)
+# Interface no Streamlit
+st.sidebar.title("Gerenciamento do App")
 
-# Inicia a verificação automática em segundo plano
-threading.Thread(target=verificar_atualizacoes_periodicamente, daemon=True).start()
-
-# Adiciona um botão para atualização manual
-if st.sidebar.button("🔄 Atualizar Agora"):
+# Botão para atualização manual (com key única)
+if st.sidebar.button("🔄 Atualizar Agora", key="atualizar_btn"):
     atualizar_codigo()
+
+# Se uma atualização foi detectada, reinicia o app
+if st.session_state.atualizacao_pendente:
+    reiniciar_test_jortform()

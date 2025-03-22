@@ -1,13 +1,15 @@
 @echo off
-
 echo Finalizando processos antigos...
-tasklist | find /I "streamlit.exe" && taskkill /F /IM streamlit.exe /T
-tasklist | find /I "python.exe" && taskkill /F /IM python.exe /T
+
+:: Finaliza apenas se os processos existirem
+tasklist | find /I "streamlit.exe" && taskkill /F /IM streamlit.exe
+tasklist | find /I "python.exe" && taskkill /F /IM python.exe
 
 echo Atualizando repositório...
 git pull origin main
 
-echo Iniciando Streamlit...
-start "" C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos\.venv\Scripts\python.exe -m streamlit run test_jortform.py --server.port 8501
+echo Verificando os últimos commits...
+git log -5 --oneline
 
-exit
+echo Iniciando Streamlit...
+streamlit run test_jortform.py
