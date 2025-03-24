@@ -1,19 +1,18 @@
 @echo off
 echo Finalizando processos antigos...
 
-:: Finaliza os processos Streamlit e Python, caso estejam rodando
-taskkill /F /IM streamlit.exe >nul 2>&1
-taskkill /F /IM python.exe >nul 2>&1
+:: Finaliza os processos do Streamlit
+tasklist | find /I "streamlit.exe" && taskkill /F /IM streamlit.exe
+tasklist | find /I "python.exe" && taskkill /F /IM python.exe
 
-echo Atualizando repositório...
+echo Commitando e enviando atualizações para o GitHub...
+cd C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos
+git add .
+git commit -m "Atualização automática"
+git push origin main
+
+echo Atualizando repositório local...
 git pull origin main
-
-echo Verificando os últimos commits...
-git log -5 --oneline
-
-:: Ativando ambiente virtual (se necessário)
-echo Ativando ambiente virtual...
-call C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos\test_jortform.py
 
 echo Iniciando Streamlit...
 streamlit run test_jortform.py
