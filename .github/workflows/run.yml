@@ -25,6 +25,6 @@ jobs:
 
       - name: Rodar Streamlit no Background
         run: |
-          start /B python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
+          start python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
           timeout /t 10
         shell: cmd
