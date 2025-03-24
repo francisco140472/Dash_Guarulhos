@@ -3,23 +3,26 @@ name: Deploy Streamlit App
 on:
   push:
     branches:
-      - main  # Atualiza o app quando a branch 'main' recebe um push
+      - main  # Ajuste para a branch correta
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # Ou ubuntu-latest
 
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar acesso SSH ao servidor
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H seu_servidor.com >> ~/.ssh/known_hosts
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Atualizar código no servidor
+      - name: Instalar dependências
         run: |
-          ssh usuario@seu_servidor.com "cd /caminho/do/projeto && git pull origin main && source venv/bin/activate && pip install -r requirements.txt && pkill -f streamlit && nohup streamlit run test_jortform.py --server.port 8501 --server.headless true &"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Rodar Streamlit para Teste
+        run: |
+          streamlit run test_jortform.py --server.port 8501 --server.headless true
