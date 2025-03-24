@@ -3,11 +3,11 @@ name: Deploy Streamlit App
 on:
   push:
     branches:
-      - main  # Ajuste para a branch correta
+      - main  # Ou a branch que você usa
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Ou ubuntu-latest
+    runs-on: windows-latest  # Muda para ubuntu-latest se for Linux
 
     steps:
       - name: Checkout do código
@@ -16,13 +16,15 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.10'  # Ajuste conforme necessário
 
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar Streamlit para Teste
+      
+      - name: Rodar Streamlit no Windows
         run: |
-          streamlit run test_jortform.py --server.port 8501 --server.headless true
+         start /B python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
+        shell: cmd
