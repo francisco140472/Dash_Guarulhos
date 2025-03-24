@@ -13,7 +13,7 @@ git log -5 --oneline
 
 :: Ativando ambiente virtual (se necessário)
 echo Ativando ambiente virtual...
-call C:\caminho\para\seu\venv\Scripts\activate
+call C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos\test_jortform.py
 
 echo Iniciando Streamlit...
 streamlit run test_jortform.py
