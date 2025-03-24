@@ -25,5 +25,5 @@ jobs:
 
       - name: Rodar Streamlit Programaticamente
         run: |
-          python run_streamlit.py
+          python run test_jortform.py
         shell: cmd
