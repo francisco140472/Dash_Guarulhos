@@ -27,4 +27,4 @@ jobs:
       - name: Rodar Streamlit no Windows
         run: |
          start /B python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
-        shell: cmd
+        shell: 
