@@ -23,8 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar Streamlit no Background
+      - name: Rodar Streamlit Programaticamente
         run: |
-          start python -m streamlit run test_jortform.py --server.port 8501
-          timeout /t 10
+          python run_streamlit.py
         shell: cmd
