@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Para rodar no Windows
+    runs-on: windows-latest
 
     steps:
       - name: Checkout do código
@@ -23,8 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar Streamlit no Background
+      - name: Rodar Streamlit
         run: |
-          start python -m streamlit run test_jortform.py --server.port 8501
-          timeout /t 10
-        shell: cmd
+          python -m streamlit run test_jortform.py --server.port 8501 --server.headless true
