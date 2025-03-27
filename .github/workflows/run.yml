@@ -19,5 +19,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_HOST }}
           password: ${{ secrets.FTP_ADDRESS }}
-          local-dir: "C:/Users/franc/OneDrive/Documentos/GitHub/Dash_Guarulhos"
+          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos/test_jortform.py
           server-dir: H:/ ftp_jot
