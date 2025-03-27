@@ -3,7 +3,30 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # Altere se necessário
+      - main  # Altere se necessárioname: Deploy via FTP
+
+on:
+  push:
+    branches:
+      - main  # Ajuste conforme necessário
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Upload para o servidor FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Ajustado para versão específica
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: C:/Users/franc/OneDrive/Documentos/GitHub/Dash_Guarulhos
+          server-dir: H:/ftp_jot/  # Caminho no servidor FTP
+
 
 jobs:
   deploy:
