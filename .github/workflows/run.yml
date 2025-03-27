@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Upload para o servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v2  # Mudou para v2
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_HOST }}
           password: ${{ secrets.FTP_ADDRESS }}
-          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos/test_jortform.py
-          server-dir: H:/ ftp_jot
+          local-dir: ./  # Diretório local (onde os arquivos do repositório estão)
+          server-dir: /ftp_jot  # Caminho no servidor FTP
