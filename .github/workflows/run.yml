@@ -16,8 +16,8 @@ jobs:
       - name: Upload para o servidor FTP
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          server: ${{ secrets.200.98.80.97 }}
-          username: ${{ secrets.ftp_jot }}
-          password: ${{ secrets.SantoAndre2020 }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_HOST }}
+          password: ${{ secrets.FTP_ADDRESS }}
           local-dir: "C:/Users/franc/OneDrive/Documentos/GitHub/Dash_Guarulhos"
           server-dir: H:/ ftp_jot
