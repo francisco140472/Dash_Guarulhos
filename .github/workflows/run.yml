@@ -3,7 +3,7 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # Altere se necessário
+      - main  # Ajuste conforme necessário
 
 jobs:
   deploy:
@@ -13,12 +13,18 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
+      - name: Verificação de Secrets
+        run: |
+          if [ -z "${{ secrets.FTP_SERVER }}" ]; then echo "❌ ERRO: FTP_SERVER não está definido!"; exit 1; fi
+          if [ -z "${{ secrets.FTP_USER }}" ]; then echo "❌ ERRO: FTP_USER não está definido!"; exit 1; fi
+          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then echo "❌ ERRO: FTP_PASSWORD não está definido!"; exit 1; fi
+          echo "✅ Todos os Secrets estão configurados!"
+
       - name: Upload para o servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Versão específica para evitar problemas
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos/test_jortform.py
-          
+          local-dir: ./C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos>
           server-dir: /ftp_jot/  # Caminho no servidor FTP
