@@ -3,12 +3,7 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # Altere se necessárioname: Deploy via FTP
-
-on:
-  push:
-    branches:
-      - main  # Ajuste conforme necessário
+      - main  # Altere se necessário
 
 jobs:
   deploy:
@@ -19,28 +14,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Upload para o servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Ajustado para versão específica
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Versão específica para evitar problemas
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: C:/Users/franc/OneDrive/Documentos/GitHub/Dash_Guarulhos
-          server-dir: H:/ftp_jot/  # Caminho no servidor FTP
-
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
-
-      - name: Upload para o servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@latest  # Mudando para 'latest'
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_HOST }}
-          password: ${{ secrets.FTP_ADDRESS }}
-          local-dir: C:/Users/franc/OneDrive/Documentos/GitHub/Dash_Guarulhos  # Diretório local (onde os arquivos do repositório estão)
-          server-dir: h:/ftp_jot  # Caminho no servidor FTP
+          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos/test_jortform.py
+          
+          server-dir: /ftp_jot/  # Caminho no servidor FTP
