@@ -15,4 +15,7 @@ jobs:
 
       - name: Forçar atualização no Streamlit
         run: |
-          curl -X POST https://share.streamlit.io/deploy
+          curl -X POST "https://share.streamlit.io/deploy" \
+               --header "Authorization: Bearer ${{ secrets.STREAMLIT_TOKEN }}" \
+               --header "Content-Type: application/json" \
+               --data '{"repository": "francisco140472/Dash_Guarulhos", "branch": "main", "main_file": "test_jortform.py"}'
