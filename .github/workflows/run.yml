@@ -1,4 +1,4 @@
-name: Deploy no Streamlit
+name: Force Deploy on Streamlit
 
 on:
   push:
@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do repositório
+      - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Sincronizar com Streamlit
+      - name: Forçar atualização no Streamlit
         run: |
-          curl -X POST https://share.streamlit.io/deploy --header "Authorization: Bearer ${{ secrets.STREAMLIT_TOKEN }}"
+          curl -X POST https://share.streamlit.io/deploy
