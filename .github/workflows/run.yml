@@ -3,7 +3,7 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # Ajuste conforme necessário
+      - main  # Altere se necessário
 
 jobs:
   deploy:
@@ -13,18 +13,11 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Verificação de Secrets
-        run: |
-          if [ -z "${{ secrets.FTP_SERVER }}" ]; then echo "❌ ERRO: FTP_SERVER não está definido!"; exit 1; fi
-          if [ -z "${{ secrets.FTP_USER }}" ]; then echo "❌ ERRO: FTP_USER não está definido!"; exit 1; fi
-          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then echo "❌ ERRO: FTP_PASSWORD não está definido!"; exit 1; fi
-          echo "✅ Todos os Secrets estão configurados!"
-
       - name: Upload para o servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v2  # Mudou para v2
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./C:\Users\franc\OneDrive\Documentos\ASSIS\vu_guarulhos_28022025\Dash_Guarulhos\Dash_Guarulhos>
-          server-dir: /ftp_jot/  # Caminho no servidor FTP
+          username: ${{ secrets.FTP_HOST }}
+          password: ${{ secrets.FTP_ADDRESS }}
+          local-dir: ./  # Diretório local (onde os arquivos do repositório estão)
+          server-dir: /ftp_jot  # Caminho no servidor FTP
