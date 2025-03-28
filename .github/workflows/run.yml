@@ -19,5 +19,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos/
+          local-dir: c:/Users/franc/OneDrive/Documentos/ASSIS/vu_guarulhos_28022025/Dash_Guarulhos/Dash_Guarulhos
           server-dir: /ftp_jot/  # Caminho no servidor FTP
