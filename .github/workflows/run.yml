@@ -1,10 +1,10 @@
-name: Force Deploy on Streamlit
+name: Deploy no Streamlit
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - main
+      - main  # Executa a ação sempre que houver um push na branch 'main'
+  workflow_dispatch:  # Permite executar manualmente pelo GitHub Actions
 
 jobs:
   deploy:
@@ -14,9 +14,14 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Forçar um novo commit para atualizar o Streamlit
+      - name: Configurar Git
         run: |
           git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git commit --allow-empty -m "Forçando deploy no Streamlit"
-          git push
+          git config --global user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/francisco140472/Dash_Guarulhos.git
+
+      - name: Forçar Deploy no Streamlit
+        run: |
+          git add .
+          git commit -m "Forçando deploy no Streamlit" || echo "Nenhuma alteração para commitar"
+          git push origin main --force
