@@ -1,10 +1,9 @@
-name: Deploy no Streamlit
+name: Force Deploy on Streamlit
 
 on:
   push:
     branches:
-      - main  # Executa a ação sempre que houver um push na branch 'main'
-  workflow_dispatch:  # Permite executar manualmente pelo GitHub Actions
+      - main  # Executa a ação quando há push na branch 'main'
 
 jobs:
   deploy:
@@ -14,14 +13,16 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar Git
+      - name: Configurar Git para autenticação
         run: |
           git config --global user.email "github-actions@github.com"
-          git config --global user.name "github-actions[bot]"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/francisco140472/Dash_Guarulhos.git
+          git config --global user.name "GitHub Actions"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/francisco140472/Dash_Guarulhos.git
 
-      - name: Forçar Deploy no Streamlit
+      - name: Forçar atualização no Streamlit
         run: |
-          git add .
-          git commit -m "Forçando deploy no Streamlit" || echo "Nenhuma alteração para commitar"
-          git push origin main --force
+          curl -X POST "https://share.streamlit.io/deploy" \
+               --header "Authorization: Bearer ${{ secrets.STREAMLIT_TOKEN }}" \
+               --header "Content-Type: application/json" \
+               --data '{"repository": "francisco140472/Dash_Guarulhos", "branch": "main", "main_file": "test_jortform.py"}'
+
